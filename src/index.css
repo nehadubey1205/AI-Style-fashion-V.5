@@ -2,12 +2,13 @@
 @import "tailwindcss";
 
 @plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-heading: "Georgia", serif;
-  --font-sans: "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
 
   --color-background: #fdfcfa;
   --color-foreground: #1E1B18;

@@ -7,6 +7,7 @@ interface UserPreferences {
   occasion?: string;
   aesthetic?: string[];
   season?: string;
+  gender?: 'Womenswear' | 'Menswear';
 }
 
 interface StylistState {

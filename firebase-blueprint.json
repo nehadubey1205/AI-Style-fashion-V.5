@@ -31,29 +31,6 @@
         "aesthetic_description": { "type": "string" }
       },
       "required": ["sessionId", "outfit_name"]
-    },
-    "conversations": {
-      "title": "Conversation",
-      "description": "AI Concierge chat session",
-      "type": "object",
-      "properties": {
-        "title": { "type": "string" },
-        "createdAt": { "type": "string", "format": "date-time" },
-        "userId": { "type": "string" }
-      },
-      "required": ["userId", "createdAt"]
-    },
-    "messages": {
-      "title": "Message",
-      "description": "Chat message",
-      "type": "object",
-      "properties": {
-        "conversationId": { "type": "string" },
-        "role": { "type": "string", "enum": ["user", "assistant"] },
-        "content": { "type": "string" },
-        "createdAt": { "type": "string", "format": "date-time" }
-      },
-      "required": ["conversationId", "role", "content", "createdAt"]
     }
   },
   "firestore": {
@@ -65,13 +42,69 @@
       "schema": "outfit_results",
       "description": "Subcollection of generated outfits for a session"
     },
-    "/conversations/{conversationId}": {
-      "schema": "conversations",
-      "description": "Collection of chat sessions"
+    "style_collections": {
+      "title": "Style Collection",
+      "description": "User-curated boards for specific themes",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "color": { "type": "string" },
+        "isPrivate": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "createdAt"]
     },
-    "/conversations/{conversationId}/messages/{messageId}": {
-      "schema": "messages",
-      "description": "Subcollection of messages in a conversation"
+    "wishlist_items": {
+      "title": "Wishlist Item",
+      "description": "Saved individual fashion items",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "platform": { "type": "string" },
+        "url": { "type": "string" },
+        "price": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "createdAt"]
+    },
+    "journal_entries": {
+      "title": "Style Journal Entry",
+      "description": "User's personal fashion diary entries",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "content": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "mood": { "type": "string" },
+        "aiNotes": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/outfit_sessions/{sessionId}": {
+      "schema": "outfit_sessions",
+      "description": "Historical styling sessions"
+    },
+    "/outfit_sessions/{sessionId}/results/{resultId}": {
+      "schema": "outfit_results",
+      "description": "Subcollection of generated outfits for a session"
+    },
+    "/style_collections/{collectionId}": {
+      "schema": "style_collections",
+      "description": "User boards"
+    },
+    "/wishlist_items/{itemId}": {
+      "schema": "wishlist_items",
+      "description": "Saved items"
+    },
+    "/journal_entries/{entryId}": {
+      "schema": "journal_entries",
+      "description": "Personal fashion diary"
     }
   }
 }

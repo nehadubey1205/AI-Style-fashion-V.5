@@ -33,7 +33,6 @@ export const Navbar = () => {
           <NavLink to="/" active={location.pathname === "/"}>Home</NavLink>
           <NavLink to="/plan" active={location.pathname === "/plan"}>Plan</NavLink>
           <NavLink to="/lookbook" active={location.pathname === "/lookbook"}>Lookbook</NavLink>
-          <NavLink to="/concierge" active={location.pathname === "/concierge"}>Concierge</NavLink>
         </div>
 
         {/* Mobile Toggle */}
@@ -52,7 +51,6 @@ export const Navbar = () => {
           <Link to="/" onClick={() => setIsOpen(false)} className="text-lg uppercase tracking-widest">Home</Link>
           <Link to="/plan" onClick={() => setIsOpen(false)} className="text-lg uppercase tracking-widest">Plan</Link>
           <Link to="/lookbook" onClick={() => setIsOpen(false)} className="text-lg uppercase tracking-widest">Lookbook</Link>
-          <Link to="/concierge" onClick={() => setIsOpen(false)} className="text-lg uppercase tracking-widest">Concierge</Link>
         </motion.div>
       )}
     </nav>
@@ -81,8 +79,6 @@ export const Footer = () => (
         <span>Global Shipping</span>
         <span className="opacity-30">/</span>
         <span>Ethical Sourcing</span>
-        <span className="opacity-30">/</span>
-        <span>Luxury Concierge</span>
       </div>
     </div>
   </footer>
