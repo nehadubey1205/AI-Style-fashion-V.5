@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&display=swap');
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-heading: "Georgia", serif;
+  --font-sans: "Helvetica Neue", Arial, sans-serif;
+
+  --color-background: #fdfcfa;
+  --color-foreground: #1E1B18;
+  
+  --color-primary: #B8922A;
+  --color-primary-foreground: #fdfcfa;
+
+  --color-accent: #C9A9A6;
+  --color-accent-foreground: #1E1B18;
+
+  --color-beige: #F6F1EA;
+  
+  --color-border: rgba(184, 146, 42, 0.2);
+  --color-input: rgba(184, 146, 42, 0.2);
+  --color-ring: #B8922A;
+
+  --radius-lg: 0px;
+  --radius-md: 0px;
+  --radius-sm: 0px;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-lg)) {
+    max-width: --theme(--breakpoint-lg);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+/* Artistic Flair Theme Utilities */
+.serif-italic {
+  font-family: var(--font-heading);
+  font-style: italic;
+}
+
+.luxury-border {
+  border: 1px solid rgba(184, 146, 42, 0.2);
+}
+
+.glass-nav {
+  background: rgba(253, 252, 250, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(184, 146, 42, 0.2);
+}
+
+.tracking-extreme {
+  letter-spacing: 0.4em;
+}
+
+.tracking-logo {
+  letter-spacing: 0.2em;
+}
+
+.luxury-shadow {
+  box-shadow: 0 20px 40px -20px rgba(184, 146, 42, 0.15);
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

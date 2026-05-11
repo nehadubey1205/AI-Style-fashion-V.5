@@ -1,0 +1,77 @@
+{
+  "entities": {
+    "outfit_sessions": {
+      "title": "Outfit Session",
+      "description": "User trip planning session",
+      "type": "object",
+      "properties": {
+        "destination": { "type": "string" },
+        "budget": { "type": "number" },
+        "duration": { "type": "string" },
+        "category": { "type": "string" },
+        "vibe": { "type": "array", "items": { "type": "string" } },
+        "season": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "userId": { "type": "string" }
+      },
+      "required": ["destination", "userId", "createdAt"]
+    },
+    "outfit_results": {
+      "title": "Outfit Result",
+      "description": "AI generated outfit",
+      "type": "object",
+      "properties": {
+        "sessionId": { "type": "string" },
+        "outfit_name": { "type": "string" },
+        "styling_breakdown": { "type": "string" },
+        "brand_suggestions": { "type": "string" },
+        "price_range": { "type": "string" },
+        "color_palette": { "type": "array", "items": { "type": "string" } },
+        "style_note": { "type": "string" },
+        "aesthetic_description": { "type": "string" }
+      },
+      "required": ["sessionId", "outfit_name"]
+    },
+    "conversations": {
+      "title": "Conversation",
+      "description": "AI Concierge chat session",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "userId": { "type": "string" }
+      },
+      "required": ["userId", "createdAt"]
+    },
+    "messages": {
+      "title": "Message",
+      "description": "Chat message",
+      "type": "object",
+      "properties": {
+        "conversationId": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "assistant"] },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["conversationId", "role", "content", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/outfit_sessions/{sessionId}": {
+      "schema": "outfit_sessions",
+      "description": "Collection of trip planning sessions"
+    },
+    "/outfit_sessions/{sessionId}/results/{resultId}": {
+      "schema": "outfit_results",
+      "description": "Subcollection of generated outfits for a session"
+    },
+    "/conversations/{conversationId}": {
+      "schema": "conversations",
+      "description": "Collection of chat sessions"
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": "messages",
+      "description": "Subcollection of messages in a conversation"
+    }
+  }
+}

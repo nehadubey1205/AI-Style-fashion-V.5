@@ -1,0 +1,106 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Phase 3: Primitive Definition
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+    function incoming() {
+      return request.resource.data;
+    }
+    function existing() {
+      return resource.data;
+    }
+
+    // Phase 4: Entity Validation Blueprints
+    
+    // OUTFIT SESSIONS
+    function isValidSession(data) {
+      return data.keys().hasAll(['destination', 'budget', 'duration', 'occasion', 'aesthetic', 'season', 'createdAt', 'userId'])
+        && data.keys().size() == 8
+        && data.destination is string && data.destination.size() <= 200
+        && data.budget is number && data.budget >= 0
+        && data.duration is string && data.duration.size() <= 100
+        && data.occasion is string && data.occasion.size() <= 100
+        && data.aesthetic is list && data.aesthetic.size() <= 10
+        && (data.aesthetic.size() == 0 || data.aesthetic[0] is string)
+        && data.season is string && data.season.size() <= 50
+        && data.createdAt == request.time
+        && data.userId == request.auth.uid;
+    }
+
+    // OUTFIT RESULTS
+    function isValidResult(data) {
+      return data.keys().hasAll(['sessionId', 'outfit_name', 'styling_breakdown', 'brand_suggestions', 'price_range', 'color_palette', 'style_note', 'aesthetic_description'])
+        && data.keys().size() == 8
+        && data.sessionId is string && isValidId(data.sessionId)
+        && data.outfit_name is string && data.outfit_name.size() <= 200
+        && data.styling_breakdown is string && data.styling_breakdown.size() <= 2000
+        && data.brand_suggestions is string && data.brand_suggestions.size() <= 500
+        && data.price_range is string && data.price_range.size() <= 100
+        && data.color_palette is list && data.color_palette.size() <= 5
+        && data.style_note is string && data.style_note.size() <= 1000
+        && data.aesthetic_description is string && data.aesthetic_description.size() <= 500;
+    }
+
+    // CONVERSATIONS
+    function isValidConversation(data) {
+      return data.keys().hasAll(['title', 'createdAt', 'userId'])
+        && data.keys().size() == 3
+        && data.title is string && data.title.size() <= 200
+        && data.createdAt == request.time
+        && data.userId == request.auth.uid;
+    }
+
+    // MESSAGES
+    function isValidMessage(data) {
+      return data.keys().hasAll(['conversationId', 'role', 'content', 'createdAt'])
+        && data.keys().size() == 4
+        && data.conversationId is string && isValidId(data.conversationId)
+        && data.role in ['user', 'assistant']
+        && data.content is string && data.content.size() <= 5000
+        && data.createdAt == request.time;
+    }
+
+    // RULES MATCHING
+    
+    match /outfit_sessions/{sessionId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
+      allow create: if isSignedIn() && isValidId(sessionId) && isValidSession(incoming());
+      allow delete: if isOwner(existing().userId);
+    }
+
+    match /outfit_sessions/{sessionId}/results/{resultId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn();
+      allow create: if isSignedIn() && isValidId(resultId) && isValidResult(incoming()) 
+        && get(/databases/$(database)/documents/outfit_sessions/$(sessionId)).data.userId == request.auth.uid;
+    }
+
+    match /conversations/{conversationId} {
+      allow get: if isOwner(existing().userId);
+      allow list: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn() && isValidId(conversationId) && isValidConversation(incoming());
+      allow delete: if isOwner(existing().userId);
+    }
+
+    match /conversations/{conversationId}/messages/{messageId} {
+      allow get: if isOwner(get(/databases/$(database)/documents/conversations/$(conversationId)).data.userId);
+      allow list: if isSignedIn() && get(/databases/$(database)/documents/conversations/$(conversationId)).data.userId == request.auth.uid;
+      allow create: if isSignedIn() && isValidId(messageId) && isValidMessage(incoming())
+        && get(/databases/$(database)/documents/conversations/$(conversationId)).data.userId == request.auth.uid;
+    }
+  }
+}
