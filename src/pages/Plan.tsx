@@ -114,8 +114,8 @@ export default function Plan() {
                   <IndianRupee className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/40" />
                   <Input 
                     type="number"
-                    min="5000"
-                    placeholder="Min. 5000"
+                    min="3000"
+                    placeholder="Min. 3000"
                     className="pl-12 h-14 bg-transparent border-primary/20 focus:border-primary transition-all rounded-none"
                     required
                     onChange={(e) => setPreferences({ budget: parseInt(e.target.value) })}

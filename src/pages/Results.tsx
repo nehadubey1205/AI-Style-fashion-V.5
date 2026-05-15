@@ -119,7 +119,7 @@ const OutfitCard = ({ outfit, index }: { outfit: any, index: number }) => {
     
     const searchUrls: Record<string, string> = {
       "Nykaa": `https://www.nykaa.com/search/result/?q=${encodeURIComponent(keyword)}`,
-      "Myntra": `https://www.myntra.com/search-results?q=${encodeURIComponent(keyword)}`,
+      "Flipkart": `https://www.flipkart.com/search?q=${encodeURIComponent(keyword)}`,
       "Westside": `https://www.westside.com/search?q=${encodeURIComponent(keyword)}`,
       "Amazon": `https://www.amazon.in/s?k=${encodeURIComponent(keyword)}`,
       "Ajio": `https://www.ajio.com/search/?text=${encodeURIComponent(keyword)}`,
@@ -264,7 +264,7 @@ export default function Results() {
       const parsed = JSON.parse(fullText);
       if (Array.isArray(parsed)) {
         parsed.forEach((item, i) => {
-          setTimeout(() => addResult(item), i * 300);
+          setTimeout(() => addResult(item), i * 100);
         });
         setTimeout(() => {
           confetti({

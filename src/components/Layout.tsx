@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { Menu, X, Instagram, Facebook, Twitter, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { auth } from "@/lib/firebase";
+import Logo from "./Logo";
 
 const NavLink = ({ to, children, active }: { to: string, children: React.ReactNode, active: boolean }) => (
   <Link 
@@ -24,14 +25,18 @@ export const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-nav h-20 px-6 md:px-12 flex items-center justify-between">
       <div className="container mx-auto flex justify-between items-center h-full">
-        <Link to="/" className="text-2xl tracking-logo font-light">
-          NAYELA <span className="text-primary font-normal italic serif-italic">AI</span>
+        <Link to="/" className="flex items-center gap-3 transition-transform hover:opacity-90 group">
+          <Logo size={54} className="transition-transform group-hover:scale-105 flex-shrink-0" />
+          <span className="text-2xl tracking-logo font-light text-[#0F172A]">
+            NAYELA <span className="text-primary font-normal italic serif-italic">AI</span>
+          </span>
         </Link>
         
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-12 font-bold uppercase tracking-widest">
           <NavLink to="/" active={location.pathname === "/"}>Home</NavLink>
           <NavLink to="/plan" active={location.pathname === "/plan"}>Plan</NavLink>
+          <NavLink to="/packing" active={location.pathname === "/packing"}>Packing</NavLink>
           <NavLink to="/lookbook" active={location.pathname === "/lookbook"}>Lookbook</NavLink>
         </div>
 
@@ -50,6 +55,7 @@ export const Navbar = () => {
         >
           <Link to="/" onClick={() => setIsOpen(false)} className="text-lg uppercase tracking-widest">Home</Link>
           <Link to="/plan" onClick={() => setIsOpen(false)} className="text-lg uppercase tracking-widest">Plan</Link>
+          <Link to="/packing" onClick={() => setIsOpen(false)} className="text-lg uppercase tracking-widest">Packing</Link>
           <Link to="/lookbook" onClick={() => setIsOpen(false)} className="text-lg uppercase tracking-widest">Lookbook</Link>
         </motion.div>
       )}

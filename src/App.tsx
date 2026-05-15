@@ -10,6 +10,7 @@ import Home from "@/pages/Home";
 import Plan from "@/pages/Plan";
 import Results from "@/pages/Results";
 import Lookbook from "@/pages/Lookbook";
+import PackingList from "@/pages/PackingList";
 import { Toaster } from "@/components/ui/sonner";
 import { auth } from "@/lib/firebase";
 import { signInAnonymously } from "firebase/auth";
@@ -29,6 +30,7 @@ export default function App() {
             <Route path="/plan" element={<Plan />} />
             <Route path="/results" element={<Results />} />
             <Route path="/lookbook" element={<Lookbook />} />
+            <Route path="/packing" element={<PackingList />} />
           </Routes>
         </main>
         <Footer />

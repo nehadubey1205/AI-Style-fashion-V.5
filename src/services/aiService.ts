@@ -10,7 +10,7 @@ export const OUTFIT_SCHEMA = {
       outfit_name: { type: Type.STRING, description: "Elegant name for the outfit (Strictly NO brand names)" },
       aesthetic_description: { type: Type.STRING, description: "Short moody description of the aesthetic" },
       styling_breakdown: { type: Type.STRING, description: "Detailed head-to-toe styling guide (Strictly NO brand names, purely editorial and descriptive)" },
-      brand_suggestions: { type: Type.STRING, description: "Specific brands for this look (e.g. Zara, H&M, Myntra, Ajio, Westside, Amazon Fashion)" },
+      brand_suggestions: { type: Type.STRING, description: "Specific brands for this look (e.g. Zara, H&M, Flipkart, Ajio, Westside, Amazon Fashion)" },
       price_range: { type: Type.STRING, description: "Estimated price in INR (e.g. ₹5,000 - ₹8,000)" },
       color_palette: { 
         type: Type.ARRAY, 
@@ -52,29 +52,29 @@ export async function* streamOutfits(preferences: any) {
       womenswear: {
         brands: "Aachho, Bunai, Libas, House of Indya, Koskii, Mulmul",
         aesthetic: "Warm earthy luxury aesthetics, contemporary ethnic, Anarkalis, Indo-western sets, Cotton kurta sets, Chikankari",
-        platformMap: "* Dresses & clothing → Aachho, Bunai, Libas\n* Footwear → Amazon, Myntra\n* Bags → Westside, Ajio\n* Accessories & jewelry → Nykaa, Ajio"
+        platformMap: "* Dresses & clothing → Aachho, Bunai, Libas\n* Footwear → Amazon, Flipkart\n* Bags → Westside, Ajio\n* Accessories & jewelry → Nykaa, Ajio"
       },
       menswear: {
         brands: "Manyavar, Fabindia, Tasva, Jaypore, Peter England Ethnic",
         aesthetic: "Sophisticated modern ethnic, Nehru jackets, Kurtas with slim trousers, Bandhgala suits, Lucknowi Chikankari",
-        platformMap: "* Clothing → Manyavar, Tasva, Fabindia\n* Footwear → Amazon, Myntra\n* Accessories → Ajio, Tata CLiQ"
+        platformMap: "* Clothing → Manyavar, Tasva, Fabindia\n* Footwear → Amazon, Flipkart\n* Accessories → Ajio, Tata CLiQ"
       },
       exclude: "Zara, H&M, Forever 21",
-      platforms: ["Manyavar", "Tasva", "Aachho", "Bunai", "Libas", "Ajio", "Amazon", "Westside", "Nykaa", "Fabindia"]
+      platforms: ["Manyavar", "Tasva", "Aachho", "Bunai", "Libas", "Ajio", "Amazon", "Westside", "Nykaa", "Fabindia", "Uniqlo", "H&M"]
     },
     "Boho Goddess": {
       womenswear: {
         brands: "Urbanic, Savana, Etsy-inspired labels, Indie boutiques",
         aesthetic: "Earthy tones, desert-inspired, flowy silhouettes, crochet, fringe, tribal jewelry, Free People-inspired",
-        platformMap: "* Dresses & clothing → Savana, Urbanic\n* Footwear → Amazon, Myntra\n* Bags → Westside, Zara\n* Accessories & jewelry → Nykaa, Myntra"
+        platformMap: "* Dresses & clothing → Savana, Urbanic\n* Footwear → Amazon, Flipkart\n* Bags → Westside, Zara\n* Accessories & jewelry → Nykaa, Flipkart"
       },
       menswear: {
         brands: "Urbanic, H&M Conscious, Zara, Fabindia, Amazon Indie",
         aesthetic: "Relaxed nomadic style, linen shirts, printed short-sleeve button-downs, hemp trousers, leather sandals, beaded bracelets",
-        platformMap: "* Clothing → Zara, H&M, Urbanic\n* Footwear → Amazon, Myntra\n* Accessories → Ajio, Nykaa"
+        platformMap: "* Clothing → Zara, H&M, Urbanic\n* Footwear → Amazon, Flipkart\n* Accessories → Ajio, Nykaa"
       },
       exclude: "Corporate or formal wear, minimalist outfits",
-      platforms: ["Savana", "Urbanic", "Amazon", "Westside", "Zara", "Nykaa", "H&M"]
+      platforms: ["Savana", "Urbanic", "Amazon", "Westside", "Zara", "Nykaa", "H&M", "Uniqlo"]
     },
     "Old Money": {
       womenswear: {
@@ -88,13 +88,13 @@ export async function* streamOutfits(preferences: any) {
         platformMap: "* Clothing → Massimo Dutti, NA-KD Men\n* Footwear → Zara, Amazon\n* Accessories → Tata CLiQ Luxury, Ajio"
       },
       exclude: "Loud logos, fast fashion trends, neon colors",
-      platforms: ["Massimo Dutti", "NA-KD", "Zara", "Amazon", "Westside", "Nykaa", "Ajio", "Tata CLiQ Luxury"]
+      platforms: ["Massimo Dutti", "NA-KD", "Zara", "Amazon", "Westside", "Nykaa", "Ajio", "Tata CLiQ Luxury", "Uniqlo", "H&M"]
     },
     "Cottagecore": {
       womenswear: {
         brands: "Zara, H&M, Urbanic, Local indie boutiques",
         aesthetic: "Romantic feminine countryside, Floral dresses, Puff sleeves, Lace, Soft cotton, Milkmaid dresses. Pastel aesthetic",
-        platformMap: "* Dresses & clothing → Zara, Urbanic\n* Footwear → Amazon, Myntra\n* Bags → Westside, Zara\n* Accessories & jewelry → Nykaa, Myntra"
+        platformMap: "* Dresses & clothing → Zara, Urbanic\n* Footwear → Amazon, Flipkart\n* Bags → Westside, Zara\n* Accessories & jewelry → Nykaa, Flipkart"
       },
       menswear: {
         brands: "Uniqlo, H&M, Zara, Westside, Marks & Spencer",
@@ -116,7 +116,7 @@ export async function* streamOutfits(preferences: any) {
         platformMap: "* Clothing → Uniqlo, Massimo Dutti, COS\n* Footwear → Zara, Adidas\n* Accessories → Ajio, Nykaa"
       },
       exclude: "Heavy prints, ruffles, maximalist accessories",
-      platforms: ["Uniqlo", "Massimo Dutti", "NA-KD", "Zara", "Westside", "Nykaa", "Ajio"]
+      platforms: ["Uniqlo", "Massimo Dutti", "NA-KD", "Zara", "Westside", "Nykaa", "Ajio", "H&M"]
     },
     "Y2K Revival": {
       womenswear: {
@@ -127,7 +127,7 @@ export async function* streamOutfits(preferences: any) {
       menswear: {
         brands: "Urbanic, H&M Trend, Bershka, Zara, Superdry",
         aesthetic: "Baggy denim, cargo pants, graphic tees, tinted sunglasses, bucket hats, futuristic sneakers, oversized hoodies",
-        platformMap: "* Clothing → Urbanic, H&M, Zara\n* Footwear → Flipkart, Amazon\n* Accessories → Ajio, Myntra"
+        platformMap: "* Clothing → Urbanic, H&M, Zara\n* Footwear → Flipkart, Amazon\n* Accessories → Ajio, Flipkart"
       },
       exclude: "Formal suits, quiet luxury, vintage conservative wear",
       platforms: ["Urbanic", "Savana", "H&M", "Forever 21", "Zara", "Amazon", "Nykaa", "Ajio"]
@@ -136,15 +136,15 @@ export async function* streamOutfits(preferences: any) {
       womenswear: {
         brands: "Zara, H&M, Marks & Spencer, Westside",
         aesthetic: "Moody intellectual, Plaid skirts, Turtlenecks, Wool coats, Oxford shoes, Vintage blazers. Colors: Brown, Charcoal, Olive, Black, Burgundy",
-        platformMap: "* Clothing → Zara, Marks & Spencer\n* Footwear → Amazon, Myntra\n* Bags → Westside, Zara\n* Accessories → Nykaa, Ajio"
+        platformMap: "* Clothing → Zara, Marks & Spencer\n* Footwear → Amazon, Flipkart\n* Bags → Westside, Zara\n* Accessories → Nykaa, Ajio"
       },
       menswear: {
         brands: "Zara, H&M, Marks & Spencer, Westside, Blackberrys",
         aesthetic: "Brooding scholar, tweed blazers, corduroy trousers, cable-knit sweaters, chelsea boots, leather briefcases, minimal watches",
-        platformMap: "* Clothing → Zara, Marks & Spencer\n* Footwear → Amazon, Myntra\n* Accessories → Nykaa, Tata CLiQ"
+        platformMap: "* Clothing → Zara, Marks & Spencer\n* Footwear → Amazon, Flipkart\n* Accessories → Nykaa, Tata CLiQ"
       },
       exclude: "Neon colors, resort wear, sportswear",
-      platforms: ["Zara", "Marks & Spencer", "Westside", "Amazon", "Nykaa", "Ajio"]
+      platforms: ["Zara", "Marks & Spencer", "Westside", "Amazon", "Nykaa", "Ajio", "Uniqlo", "H&M"]
     }
   };
 
@@ -152,26 +152,33 @@ export async function* streamOutfits(preferences: any) {
   const genderKey = gender.toLowerCase() as 'womenswear' | 'menswear';
   const context = currentStyleData[genderKey];
 
-  const prompt = `You are an elite fashion editor and shopping assistant for NAYELA AI — Style Studio. 
-  Create 5 Pinterest-worthy vacation outfits for a ${gender} trip to ${preferences.destination}.
+  const outfitCountMap: Record<string, number> = {
+    "Weekend": 4,
+    "1 Week": 7,
+    "2 Weeks": 12
+  };
+  const count = outfitCountMap[preferences.duration] || 3;
+
+  const prompt = `You are an elite fashion editor for NAYELA — Style Studio. 
+  CURATE FAST: Create ${count} high-impact Pinterest-worthy outfits for a ${gender} trip to ${preferences.destination}.
   
   GENDER: ${gender}
-  SELECTED STYLE: ${selectedStyle}
+  STYLE: ${selectedStyle}
   Budget: ₹${preferences.budget}
   Duration: ${preferences.duration}
-  Aesthetic Focus: ${context.aesthetic}
+  Aesthetic: ${context.aesthetic}
   
   Strict Style Rules:
-  1. Recommend ONLY these brands: ${context.brands}.
-  2. NEVER recommend: ${currentStyleData.exclude}.
-  3. Sound sophisticated and premium, matching the ${selectedStyle} vibe for ${gender}.
-  4. Include style-specific accessories, footwear, and jewelry.
-  5. Match the budget and destination weather perfectly.
-  6. Return Exactly 5 outfits as valid JSON.
-  7. CRITICAL: NEVER mention brand names in 'outfit_name' or 'styling_breakdown'. Brand suggestions should ONLY appear in 'brand_suggestions'.
-  8. For 'shopping_items', extract items based on this platform mapping:
-${context.platformMap}
-  9. Suggested platforms should be limited to: ${currentStyleData.platforms.join(", ")}.`;
+  1. Brands: ${context.brands}.
+  2. EXCLUDE: ${currentStyleData.exclude}.
+  3. Tone: Sophisticated, premium, and concise.
+  4. Include accessories, footwear, and jewelry.
+  5. Match budget and destination weather perfectly.
+  6. Exactly ${count} outfits (JSON).
+  7. NO brand names in 'outfit_name' or 'styling_breakdown'.
+  8. PLATFORM MAP: ${context.platformMap}
+  9. Platforms: ${currentStyleData.platforms.join(", ")}.
+  10. SPECIFIC: For any 'Hat' or 'Ribbon tie straw hat', ALWAYS map to 'Uniqlo' or 'H&M' (prioritize these over Westside).`;
 
   const stream = await ai.models.generateContentStream({
     model: "gemini-3-flash-preview",

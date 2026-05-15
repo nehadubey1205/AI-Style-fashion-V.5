@@ -7,38 +7,21 @@ export default function Home() {
     <div className="min-h-screen flex flex-col md:flex-row overflow-hidden pt-20">
       {/* Left Column: Content */}
       <div className="w-full md:w-[55%] p-8 md:p-24 flex flex-col justify-center relative">
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="absolute top-10 md:top-20 left-8 md:left-16 text-[80px] md:text-[120px] font-heading italic text-beige select-none pointer-events-none leading-none z-0"
-        >
-          01
-        </motion.div>
-        
         <div className="relative z-10 space-y-8">
-          <motion.h2 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-[10px] tracking-extreme uppercase text-primary font-semibold italic"
-          >
-            Vacay Vogue AI Edition
-          </motion.h2>
-          
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.2 }}
             className="text-5xl md:text-7xl leading-[1.1] font-heading"
           >
-            Your AI Style <br/>
-            <span className="italic font-light serif-italic">Editor</span>
+            AI Finds, <br/>
+            <span className="italic font-light serif-italic">You Refine.</span>
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.3 }}
             className="text-lg text-foreground/70 max-w-md leading-relaxed"
           >
             Luxury vacation styling curated specifically for the modern Indian traveler. Elevate your destination wardrobe with Pinterest-worthy aesthetics.
@@ -47,7 +30,7 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 0.4 }}
             className="flex flex-wrap gap-6 pt-4"
           >
             <Link to="/plan">
@@ -62,6 +45,15 @@ export default function Home() {
               </button>
             </Link>
           </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="text-[8px] uppercase tracking-widest font-bold opacity-30 mt-12"
+          >
+            © 2026 NAYELA AI
+          </motion.p>
         </div>
       </div>
 
