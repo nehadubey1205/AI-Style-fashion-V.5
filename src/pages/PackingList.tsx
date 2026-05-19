@@ -170,6 +170,26 @@ export default function PackingList() {
               </p>
             </div>
           </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="p-8 bg-[#FDF2F2] border border-red-100 luxury-shadow flex items-start gap-6 relative overflow-hidden md:col-span-2"
+          >
+            <div className="absolute top-[-10px] right-[-10px] opacity-[0.05]">
+              <Smartphone className="w-24 h-24 text-primary" />
+            </div>
+            <div className="bg-white p-3 rounded-full shadow-sm shrink-0">
+              <Smartphone className="w-5 h-5 text-primary" />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-sm font-bold uppercase tracking-widest text-primary">Offline Navigation</h3>
+              <p className="text-[11px] font-heading italic leading-relaxed text-foreground/70">
+                “Stay on track even offline — download maps in advance and travel worry-free.”
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
